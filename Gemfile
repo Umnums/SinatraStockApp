@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 
-# gem "rails"
+#gem "rails"
 gem 'sinatra'
 gem 'sqlite3'
 gem 'activerecord', :require=> "active_record"
@@ -13,3 +13,5 @@ gem 'require_all'
 gem 'sinatra-activerecord'
 gem 'bcrypt'
 gem 'shotgun'
+gem 'rack-test'
+gem 'capybara'
