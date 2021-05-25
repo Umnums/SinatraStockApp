@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-    get '/login' do
-        erb :"sessions/login.html"
+    get '/signup' do
+        erb :"sessions/signup.html"
     end
 
     post '/sessions' do
