@@ -1,0 +1,11 @@
+<h1><%=@portfolio.name%></h1>
+<h2><%=@portfolio.description%></h2>
+<h2>Current Balance: <%= @portfolio.current%></h2>
+<h2>Starting Balance: <%= @portfolio.starting%></h2>
+<h2>Percent Yield <%=@portfolio.yield%></h2>
+<h2>Open Positions</h2>
+<ul>
+<% @portfolio.stocks.each do |stock|%>
+<li><a href='/stocks/<%=stock.id%>'><%=stock.name%></a></li>
+<%end%>
+</ul>

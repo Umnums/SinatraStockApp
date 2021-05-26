@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     end
 
     post '/login' do
-        login(params[:email], params[:password])
+        login(params[:username], params[:password])
     end
    
 

@@ -12,11 +12,19 @@ class SessionsController < ApplicationController
     end
 
     post '/portfolios/new' do
-        portfolio = Portfolio.new()
-        portfolio.name = params[:name]
-        portfolio.desc = params[:description]
-        portfolio.starting = params[:starting]
-        portfolio.save
+        if !logged_in?
+            redirect '/login.html'
+        else
+            portfolio = Portfolio.new()
+            portfolio.name = params[:name]
+            portfolio.description = params[:description]
+            portfolio.starting = params[:starting]
+            portfolio.save
+            current_user.portfolios << portfolio
+            portfolio.user = current_user
+            redirect "/users/#{current_user.id}"
+        end
+
     end
 
     

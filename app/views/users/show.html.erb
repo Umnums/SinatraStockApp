@@ -2,7 +2,7 @@
 
 <h3>Here are your portfolios!</h3>
 <ul>
-<% @user.portfolios.all do |portfolio|%>
+<% @user.portfolios.each do |portfolio|%>
     <li><a href='/portfolios/<%=portfolio.id%>'><%=portfolio.name%></a></li>
 <%end%>
 </ul>

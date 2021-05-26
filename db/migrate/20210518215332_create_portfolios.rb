@@ -6,6 +6,7 @@ class CreatePortfolios < ActiveRecord::Migration
       t.integer :starting
       t.integer :current
       t.text :history
+      t.integer :user_id
       
     end
   end

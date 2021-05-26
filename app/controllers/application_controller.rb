@@ -17,11 +17,11 @@ class ApplicationController < Sinatra::Base
             !!current_user
         end
         
-        def login(email, password)
-            user = User.find_by(email: email)
+        def login(username, password)
+            user = User.find_by(username: username)
             if user && user.authenticate(password)
                 session[:user_id] = user.id
-                redirect "/users/#{user.id}"
+                redirect "/users/#{current_user.id}"
             else
                 redirect '/login'
             end
@@ -29,7 +29,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-        User.find_by(session[:user_id])
+        User.find(session[:user_id])
     end
 
 end

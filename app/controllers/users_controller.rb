@@ -9,7 +9,6 @@ class UsersController < ApplicationController
         @user.username = params[:username]
         @user.password = params[:password]
         @user.password_confirmation = params[:password_confirmation]
-        binding.pry
         if @user.save
             login(params[:email], params[:password])
             redirect "/users/#{@user.id}"
@@ -20,7 +19,6 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
-        binding.pry
         if logged_in? && session[:user_id] == params[:id].to_i
             @user = User.find(params[:id])
             erb :'users/show.html'

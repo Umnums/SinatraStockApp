@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20210524203408) do
     t.integer "starting"
     t.integer "current"
     t.text    "history"
+    t.integer "user_id"
   end
 
   create_table "stocks", force: :cascade do |t|
