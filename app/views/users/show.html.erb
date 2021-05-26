@@ -1,1 +1,22 @@
 <h1>Welcome, <%= @user.username%></h1>
+
+<h3>Here are your portfolios!</h3>
+<ul>
+<% @user.portfolios.all do |portfolio|%>
+    <li><a href='/portfolios/<%=portfolio.id%>'><%=portfolio.name%></a></li>
+<%end%>
+</ul>
+
+<h3>Create a new portfolio</h3>
+<form action='/portfolios/new' method='POST'>
+<p>
+    <label for ='name'>Portfolio Name</label>
+    <input type='text' name='name' id='name'><br>
+    <label for = 'description'>Portfolio Description </label><br>
+    <input type='text' name='description' id='description'><br>
+    <label for ='starting'>Starting Balance</label><br>
+    <input type='integer' name='starting' id='starting'>
+</p>
+
+    <input type = 'submit' value='Create Portfolio'/>
+</form>
