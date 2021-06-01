@@ -4,6 +4,8 @@ class CreateStocks < ActiveRecord::Migration
       t.string :name
       t.string :symbol
       t.integer :current_price
+      t.integer :daily_percent
+      t.integer :daily_value
       
 
     end

@@ -11,4 +11,5 @@ if defined?(ActiveRecord::Migrator) && ActiveRecord::Migrator.needs_migration?
 use Rack::MethodOverride
 use SessionsController
 use UsersController
+use PortfoliosController
 run ApplicationController
