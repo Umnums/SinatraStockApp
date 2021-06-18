@@ -5,7 +5,7 @@ class Scraper
 
   
     def get_page(url)
-      Nokogiri::HTML(open(url))
+      Nokogiri::HTML(URI.open(url))
     end
   
     def scrape_stock(symbol)
@@ -14,16 +14,9 @@ class Scraper
       output["name"] = doc.css(".KY7mAb").text
       output["price"] = doc.css(".ln0Gqe .YMlKec.fxKbKc").text
       return output
-
+      
     end
   
-    def scrape_city(city_url)
-      doc = self.get_page(city_url)
-      games = doc.css(".content_box")
-      games
-    end
   
 end
-scraper = Scraper.new
-print scraper.scrape_stock("F")["name"]
-print scraper.scrape_stock("F")['price']
+

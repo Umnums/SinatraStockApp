@@ -1,34 +1,66 @@
-<h1><%=@portfolio.name%></h1>
-<h2><%=@portfolio.description%></h2>
-<h2>Current Balance: <%= @portfolio.current%></h2>
-<h2>Starting Balance: <%= @portfolio.starting%></h2>
-<h2>Percent Yield <%=@portfolio.yield%></h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><strong>Current Balance</strong></td>
+      <td><strong>Starting Balance</strong></td>
+      <td><strong>Lifetime Percent Yield</strong></td>
+    </tr>
+    <tr>
+
+      <td><%= @portfolio.current %></td>
+      <td><%= @portfolio.starting %></td>
+      <td><%= @portfolio.yield %></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
 <h2>Open Positions</h2>
 
-<div class="center">
-
-  <div class="info">
     
-    <ul>
-        <% @portfolio.stocks.each do |stock|%>
-        <li><a href='/stocks/<%=stock.id%>'><%=stock.name%></a></li>
-    <%end%>
-    </ul>
-    <p><strong>Name:</strong> <%= @attraction.name %></p>
-    <p><strong>Total Number of Users:</strong> <%= @attraction.users.count %></p>
-    <p><strong>Ticket Requirement:</strong> <%= @attraction.tickets %></p>
-    <p><strong>Height Requirement:</strong> <%= @attraction.min_height %> inches</p>
-    <p><strong>Nausea Rating:</strong> <%= @attraction.nausea_rating %></p>
-    <p><strong>Happiness Rating:</strong> <%= @attraction.happiness_rating %></p>
-    <% if current_user.admin %>
-      <%= link_to 'Edit Attraction', [:edit, @attraction] %></p>
-    <% else %>
-      <%= form_for @ride do |f| %>
-        <%= f.hidden_field :user_id %><br />
-        <%= f.hidden_field :attraction_id %><br />
-        <%= f.submit "Go on this ride", class:"btn btn-light" %>
-      <% end %>
-    <% end %>
-  </div>
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
 
-</div>
+  <tbody>
+    <tr>
+      <td><strong>Stock Name</strong></td>
+      <td><strong>Symbol</strong></td>
+      <td><strong>Current Price</strong></td>
+      <td><strong>Purchase Price</strong></td>
+      <td><strong>Overall Return</strong></td>
+
+    </tr>
+    <% @stocks.each do |stock| %>
+      <tr>
+
+        <td><a href='/stocks/<%=stock.id%>'><%=stock.name%></a></td>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.name %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<h2>Add stocks to current portfolio</h2>
+
+<form action='/stocks/new' method='POST'>
+<p>
+    <label for ='name'>Stock Ticker</label>
+    <input type='text' name='name' id='name'><br>
+</p>
+
+    <input type = 'submit' value='Add Portfolio'/>
+</form>
