@@ -5,6 +5,7 @@ class Portfolio < ActiveRecord::Base
     validates :name, presence: true, uniqueness: true
     validates :description, presence: true
     validates :starting, presence: true
+    serialize :history
      
 
 end

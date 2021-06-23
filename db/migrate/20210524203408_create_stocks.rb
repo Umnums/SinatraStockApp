@@ -3,9 +3,9 @@ class CreateStocks < ActiveRecord::Migration
     create_table :stocks do |t|
       t.string :name
       t.string :symbol
-      t.integer :current_price
-      t.integer :daily_percent
-      t.integer :daily_value
+      t.decimal :current_price
+      t.decimal :daily_percent
+      t.decimal :daily_value
       
 
     end

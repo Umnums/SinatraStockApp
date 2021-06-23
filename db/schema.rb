@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20210524203408) do
   create_table "stocks", force: :cascade do |t|
     t.string  "name"
     t.string  "symbol"
-    t.integer "current_price"
-    t.integer "daily_percent"
-    t.integer "daily_value"
+    t.decimal "current_price"
+    t.decimal "daily_percent"
+    t.decimal "daily_value"
   end
 
   create_table "users", force: :cascade do |t|

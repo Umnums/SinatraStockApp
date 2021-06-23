@@ -3,8 +3,8 @@ class PortfoliosController < ApplicationController
         if !logged_in?
             redirect '/login.html'
         else
-            if current_user.portfolios.find_by(params[:id])
-                @portfolio = portfolios.find_by(params[:id])
+            if current_user.portfolios.find_by(id: params[:id])
+                @portfolio = Portfolio.find_by(id: params[:id])
                 @stocks = portfolio.stocks
                 erb :'portfolios/show.html'
             else
