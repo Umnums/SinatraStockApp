@@ -5,7 +5,9 @@ class Stock < ActiveRecord::Base
     
     def self.find_or_create_by_ticker(input)
         if Stock.find_by(symbol: input)
-            Stock.find_by(symbol: input).update_price
+           stock = Stock.find_by(symbol: input)
+           stock.update_price
+           return stock
         else
             stock = Stock.create(input)
         end
@@ -28,9 +30,16 @@ class Stock < ActiveRecord::Base
 
     end
 
-    def update_price(ticker)
+    def update_price
         scraper = Scraper.new
-        price = scraper.scrape_stock(ticker)[:price].split("$")[1].to_f
-        stock.current_price=price_change
+        price = scraper.scrape_stock(self.symbol)[:price].split("$")[1].to_f
+        self.current_price = price
+        self.save
+    end
+
+    def overall_return(purchase_price, shares)
+        self.update_price
+        overall_return = self.current_price * shares - (purchase_price * shares) 
+
     end
 end

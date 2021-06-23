@@ -37,16 +37,21 @@
       <td><strong>Stock Name</strong></td>
       <td><strong>Symbol</strong></td>
       <td><strong>Current Price</strong></td>
-      <td><strong>Purchase Price</strong></td>
+      <td><strong>Cost Basis</strong></td>
       <td><strong>Overall Return</strong></td>
 
     </tr>
     <% @stocks.each do |stock| %>
       <tr>
-
-        <td><a href='/stocks/<%=stock.id%>'><%=stock.name%></a></td>
-        <td><%= stock.ticker %></td>
-        <td><%= stock.name %></td>
+      <%stock_obj = Stock.find_by(symbol: stock)%>
+      <%stock_obj.update_price%>
+      
+        <td><a href='/stocks/<%=stock_obj.id%>'><%=stock_obj.name%></a></td>
+        <td><%= stock_obj.symbol %></td>
+        <td><%= stock_obj.name %></td>
+        <td><%= stock_obj.current_price%></td>
+        <td><%= @portfolio.history[stock][:purchase_price]%></td>
+        <td><%= stock_obj.overall_return(@portfolio.history[stock][:purchase_price], @portfolio.history[stock][:shares])%></td>
 
       </tr>
     <% end %>
@@ -54,18 +59,20 @@
 </table>
 
 
-<h2><a href="./stocks/new">Add a stock to current portfolio</a></h2>
+<h2><a href="../stocks/new">Add a stock to current portfolio</a></h2>
 
-<form action='/stocks/new' method='POST'>
+<form action='/portfolio/new_stock' method='POST'>
 <p>
     <label for ='name'>Stock Ticker</label>
     <input type='text' name='name' id='name'><br>
 
 </p>
 <p>
-    <label for ='name'></label>
-    <input type='text' name='name' id='name'><br>
+    <label for ='share_number'></label>
+    <input type='integer' name='share_number' id='share_number'><br>
 </p>
+    <input type='hidden' name='id' id='id' value="<%= @portfolio.id%>">
 
     <input type = 'submit' value='Add Stock'/>
+    
 </form>

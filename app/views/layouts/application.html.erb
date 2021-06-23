@@ -27,9 +27,16 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
+  <% flash.keys.each do |type| %>
+    <div data-alert class="flash <%= type %> alert-box radius">
+      <%= flash[type] %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
 
     <!-- content -->
     <div class="container"  role="main">
+    
       <%= yield %>
     </div>
   </body>

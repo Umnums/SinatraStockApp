@@ -3,8 +3,8 @@ class CreatePortfolios < ActiveRecord::Migration
     create_table :portfolios do |t|
       t.string :name
       t.string :description
-      t.integer :starting
-      t.integer :current
+      t.decimal :starting
+      t.decimal :current
       t.text :history
       t.integer :user_id
       
