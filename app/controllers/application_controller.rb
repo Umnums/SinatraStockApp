@@ -4,6 +4,7 @@ class ApplicationController < Sinatra::Base
         set :views, 'app/views'
         enable :sessions
         set :session_secret, "carcollection"
+        register Sinatra::Flash
     
     end
 

@@ -1,19 +1,21 @@
-
+<h1><%= @portfolio.name%></h1>
+<h2><%= @portfolio.description%></h2>
 <table class="table">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      <td><strong>Current Balance</strong></td>
-      <td><strong>Starting Balance</strong></td>
+      <td><strong>Total Portfolio Balance</strong></td>
+      <td><strong>Current Cash Balance</strong></td>
+      <td><strong>Total Amount Invested</strong></td>
       <td><strong>Lifetime Percent Yield</strong></td>
     </tr>
     <tr>
-
+      <td><%= @portfolio.total %></td>
       <td><%= @portfolio.current %></td>
       <td><%= @portfolio.starting %></td>
       <td><%= @portfolio.yield %></td>
@@ -61,15 +63,15 @@
 
 <h2><a href="../stocks/new">Add a stock to current portfolio</a></h2>
 
-<form action='/portfolio/new_stock' method='POST'>
+<form action='/portfolios/new_stock' method='POST'>
 <p>
     <label for ='name'>Stock Ticker</label>
     <input type='text' name='name' id='name'><br>
 
 </p>
 <p>
-    <label for ='share_number'></label>
-    <input type='integer' name='share_number' id='share_number'><br>
+    <label for ='share_number'>Number of Shares to Purchase</label>
+    <input type='number' name='share_number' id='share_number'><br>
 </p>
     <input type='hidden' name='id' id='id' value="<%= @portfolio.id%>">
 

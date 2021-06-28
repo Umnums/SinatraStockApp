@@ -7,8 +7,18 @@ class Portfolio < ActiveRecord::Base
     validates :starting, presence: true
     serialize :history
 
+    def total
+        total_stock_value = 0
+        self.history.values.each do |value|
+            total_stock_value += value[:purchase_price] * value[:shares]
+            binding.pry
+            
+        end
+        return total_stock_value + self.current
+    end
+
     def yield
-        ((self.starting - self.current)/self.starting) * 100 
+        ((self.total - self.starting)/self.starting) * 100 
     end
 
     def cost_basis(original_price, original_shares, new_price, new_shares)
